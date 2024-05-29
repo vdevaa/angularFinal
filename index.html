@@ -1,0 +1,101 @@
+<!doctype html>
+<html ng-app = "MyFirstApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./dist/output.css" rel="stylesheet">
+  <script src = "angular.min.js"></script>
+  <script src = "app.js"></script>
+  <style>
+    /* Add some basic styles */
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+    .sidebar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+    }
+    .sidebar a:hover {
+        color: #f1f1f1;
+    }
+    .open-btn {
+        font-size: 20px;
+        cursor: pointer;
+        color: blue;
+        padding: 10px;
+    }
+</style>
+</head>
+<main class="sticky top-0 bg-rose-200 border-black border z-50">
+    <nav class="flex justify-between px-8 items-center py-6">
+        <section class="flex items-center gap-4">
+            <body ng-controller = "SidebarController">
+            <div class="open-btn" ng-click="openNav()">☰</div>
+            <div id="mySidebar" class="sidebar" ng-style="sidebarStyle">
+                <a href="javascript:void(0)" ng-click="closeNav()">Close</a>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Services</a>
+            </div>
+            </body> 
+
+            <h1>Logo</h1>
+
+        </section>
+
+        <section class="flex items-center gap-4">
+            <ul class="flex gap-5 text-sm items-center">
+                <li class="hover:underline cursor-pointer hover:-translate-y-1 transition">Home</li>
+                <li class="hover:underline cursor-pointer hover:-translate-y-1 transition">About</li>
+                <li class="hover:underline cursor-pointer hover:-translate-y-1 transition">Contact</li>
+                <li class="hover:underline cursor-pointer hover:-translate-y-1 transition">Services</li>
+            </ul>
+        </section>
+    </nav>
+
+
+</main>
+<body>
+    <div class="grid lg:grid-cols-3 sm:grid-cols-2 auto-rows-[150px] gap-x-6 gap-y-6 max-w-3xl mx-auto py-8" ng-controller = "GridController">
+        <a href = 'cupcake'class='bg-rose-200 rounded-xl p-2 flex flex-col items-center justify-center cursor-pointer border-black border-2 hover:-translate-y-2 transition'>
+            <h2>Browse {{name1}}</h2>
+        </a>    
+
+        <a href = 'bread' class='bg-rose-200 rounded-xl p-2 flex flex-col items-center justify-center cursor-pointer border-black border-2 hover:-translate-y-2 transition'>
+            <h2>Browse {{name2}}</h2>
+        </a>
+       
+        <a href= 'doughnut' class='bg-rose-200 rounded-xl p-2 flex flex-col items-center justify-center cursor-pointe border-black border-2 hover:-translate-y-2 transition'>
+            <h2>Browse {{name3}}</h2>
+        </a>
+
+        <a href = 'cake' class='bg-rose-200 rounded-xl p-2 flex flex-col items-center justify-center cursor-pointer border-black border-2 hover:-translate-y-2 transition'>
+            <h2>Browse {{name4}}</h2>
+        </a>
+
+        <a href = 'sweet' class='bg-rose-200 rounded-xl p-2 flex flex-col items-center justify-center cursor-pointer border-black border-2 hover:-translate-y-2 transition'>
+            <h2>Browse {{name5}}</h2>
+        </a>
+
+        <a href = 'danish' class = 'bg-rose-200 rounded-xl p-2 flex flex-col items-center justify-center cursor-pointer border-black border-2 hover:-translate-y-2 transition'>
+            <h2>Browse {{name6}}</h2>
+        </a>
+    </div>
+</body>
+</html>

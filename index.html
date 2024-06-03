@@ -8,6 +8,8 @@
   <script src = "app.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
   <script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="utf-8"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" integrity="sha512-dfX5uYVXzyU8+KHqj8bjo7UkOdg18PaOtpa48djpNbZHwExddghZ+ZmzWT06R5v6NSk3ZUfsH6FNEDepLx9hPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
     /* Add some basic styles */
     body {
@@ -142,10 +144,13 @@
         </script>
     </div>
 
+
+    
+
     <div>
         <h2 class="text-center">Time Series 2 using Plotly:</h2>
     </div>
-    <div id="myDiv2">
+    <div id="myDiv2" class="flex justify-center">
         <!-- A different time series graph will be drawn inside this DIV -->
     <script>
             d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv", function(err, rows) {
@@ -176,20 +181,178 @@
         var data = [trace1, trace2];
 
         var layout = {
-            title: 'Basic Time Series',
+            title: 'Apple Stock Time Series (2 years)',
         };
 
         Plotly.newPlot('myDiv2', data, layout);
         });
-    </script>
-        
+    </script>     
     </div>
 
+    <div>
+        <h2 class="text-center">Time Series using VijayJs:</h2>
+    </div>
 
+   <div class="flex justify-center" id = "myDiv3">
+    <script>
+        d3.csv("./data/daily_solar.csv", function(err, rows) {
+            if(err) throw err;
     
+            function unpack(rows, key) {
+                return rows.map(function(row) { return row[key]; });
+            }
+    
+            // Filter out zero values
+            var filteredRows = rows.filter(row => row['Solar (kWh)'] != 0);
+    
+            var trace1 = {
+                type: "scatter",
+                mode: "lines",
+                name: 'Solar',
+                x: unpack(filteredRows, 'Date'),
+                y: unpack(filteredRows, 'Solar (kWh)'),
+                line: {color: '#17BECF', shape: 'spline', smoothing: 1.3}
+            };
+    
+            var layout = {
+                title: 'Solar and Date (2 years)',
+                xaxis: {
+                    title: 'Date',
+                    rangeslider: {}
+                },
+                yaxis: {
+                    title: 'Solar (kWh)'
+                }
+            };
+    
+            Plotly.newPlot('myDiv3', [trace1], layout);
+        })
+    </script>
+   </div>
+
+   <div class="flex justify-center" id = "myDiv6">
+   
+    <script>
+    
+    d3.csv("./data/daily_load.csv", function(err, rows) {
+
+            if(err) throw err;
+    
+            function unpack(rows, key) {
+                return rows.map(function(row) { return row[key]; });
+            }
+    
+            // Filter out zero values
+            var filteredRows = rows.filter(row => row['Solar (kWh)'] != 0);
+    
+            var trace1 = {
+                type: "scatter",
+                mode: "lines",
+                name: 'Solar',
+                x: unpack(filteredRows, 'Date'),
+                y: unpack(filteredRows, 'Load (kWh)'),
+                line: {color: '#17BECF', shape: 'spline', smoothing: 1.3}
+            };
+    
+            var layout = {
+                title: 'Load and Date (2 years)',
+                xaxis: {
+                    title: 'Date',
+                    rangeslider: {}
+                },
+                yaxis: {
+                    title: 'Load (kWh)'
+                }
+            };
+    
+            Plotly.newPlot('myDiv6', [trace1], layout);
+        })
+    </script>
+   </div>
+
+   <div class="flex justify-center" id = "myDiv4">
+    <script>
+        d3.csv("./data/tariff.csv", function(err, rows) {
+
+            if(err) throw err;
+
+            function unpack(rows, key) {
+                return rows.map(function(row) { return row[key]; });
+            }
+
+            var trace1 = {
+                type: "scatter",
+                mode: "lines",
+                name: 'Buy',
+                x: unpack(rows, 'Date'),
+                y: unpack(rows, 'Buy ($/kWh)'),
+                line: {color: '#17BECF', shape: 'spline' | 'monotonicx' | 'monotonicy'}
+            };
+            var trace2 = {
+                type: "scatter",
+                mode: "lines",
+                name: 'Sell',
+                x: unpack(rows, 'Date'),
+                y: unpack(rows, 'Sell ($/kWh)'),
+                line: {color: '#7F7F7F' , shape: 'spline' | 'monotonicx' | 'monotonicy'}
+            };
+            var layout = {
+            title: 'Buy and Sell (2 years)',
+             };
+
+             var data1 = [trace1, trace2];
+
+             Plotly.newPlot("myDiv4", [trace1], layout);
+
+
+
+        })
+    </script>
+   </div>
+      
+
+
+   <div class="flex justify-center" id = "myDiv5">
+    <script>
+        d3.csv("./data/tariff.csv", function(err, rows) {
+
+            if(err) throw err;
+
+            function unpack(rows, key) {
+                return rows.map(function(row) { return row[key]; });
+            }
+
+            var trace1 = {
+                type: "scatter",
+                mode: "lines",
+                name: 'Buy',
+                x: unpack(rows, 'Date'),
+                y: unpack(rows, 'Buy ($/kWh)'),
+                line: {color: '#17BECF', shape: 'spline' | 'monotonicx' | 'monotonicy'}
+            };
+            var trace2 = {
+                type: "scatter",
+                mode: "lines",
+                name: 'Sell',
+                x: unpack(rows, 'Date'),
+                y: unpack(rows, 'Sell ($/kWh)'),
+                line: {color: '#7F7F7F', shape: 'spline' | 'monotonicx' | 'monotonicy'}
+            };
+            var layout = {
+            title: 'Buy and Sell (2 years)',
+             };
+
+             var data = [trace1, trace2];
+
+             Plotly.newPlot("myDiv5", [trace2], layout);
+
+
+
+        })
+    </script>
+   </div>
+
+
+  
 </body>
-
-
-
-
 </html>
